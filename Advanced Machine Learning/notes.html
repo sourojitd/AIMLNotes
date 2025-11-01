@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Advanced Machine Learning Notes</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            --card-bg: rgba(255, 255, 255, 0.2);
+            --card-border: 1px solid rgba(255, 255, 255, 0.3);
+            --text-color: #f0f0f0;
+            --header-color: #ffffff;
+            --strong-color: #d1d8ff;
+            --kid-card-bg: rgba(40, 40, 80, 0.3);
+            --kid-card-border: #9b86ee;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #667eea;
+            background-image: var(--bg-gradient);
+            color: var(--text-color);
+            padding: 2rem 1rem;
+            min-height: 100vh;
+            background-attachment: fixed;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        h1 {
+            text-align: center;
+            color: var(--header-color);
+            font-size: 3rem;
+            margin-bottom: 2rem;
+            text-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .topic-section {
+            background: var(--card-bg);
+            border-radius: 20px;
+            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.2);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: var(--card-border);
+            padding: 2rem;
+            margin-bottom: 2.5rem;
+        }
+
+        h2 {
+            font-size: 2rem;
+            color: var(--header-color);
+            border-bottom: 2px solid rgba(255, 255, 255, 0.3);
+            padding-bottom: 0.75rem;
+            margin-bottom: 1.5rem;
+        }
+
+        h3 {
+            font-size: 1.5rem;
+            color: var(--header-color);
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        p, ul, ol {
+            font-size: 1rem;
+            line-height: 1.7;
+            color: var(--text-color);
+            margin-bottom: 1rem;
+        }
+
+        ul, ol {
+            list-style-position: inside;
+            padding-left: 1rem;
+        }
+        
+        li {
+            margin-bottom: 0.5rem;
+        }
+
+        code {
+            background: rgba(0, 0, 0, 0.2);
+            border-radius: 5px;
+            padding: 0.2em 0.5em;
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 0.9rem;
+        }
+        
+        strong {
+            color: var(--strong-color);
+            font-weight: 600;
+        }
+
+        .kid-card {
+            background: var(--kid-card-bg);
+            border-left: 5px solid var(--kid-card-border);
+            padding: 1.5rem;
+            border-radius: 10px;
+            margin-top: 1.5rem;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .kid-card h4 {
+            font-size: 1.2rem;
+            color: #f7f7f7;
+            margin-bottom: 0.75rem;
+        }
+
+    </style>
+</head>
+<body>
+    <main class="container">
+        <h1>📚 My Advanced Machine Learning Notes</h1>
+
+        <section class="topic-section">
+            <h2>앙 Ensemble Methods</h2>
+            
+            <h3>1. Core Concepts</h3>
+            [cite_start]<p><strong>Detailed Explanation:</strong><br> Ensemble methods are techniques that combine the predictions from multiple separate models (called base estimators or weak learners) to achieve better performance and robustness than any single model could[cite: 10]. [cite_start]The core motivation is the belief that a "committee of experts" working together is more likely to be accurate than any individual expert[cite: 11].</p>
+            [cite_start]<p>For an ensemble to be effective[cite: 13]:</p>
+            <ul>
+                [cite_start]<li>The base models should be as <strong>different</strong> from each other as possible[cite: 14].</li>
+                [cite_start]<li>The errors made by each model should be <strong>independent</strong>[cite: 15].</li>
+            </ul>
+            [cite_start]<p><strong>Prediction Aggregation:</strong> For Classification, the final prediction is the <strong>Mode</strong> (most common vote)[cite: 17]. [cite_start]For Regression, it's the <strong>average</strong>[cite: 19].</p>
+            
+            <article class="kid-card">
+                <h4>🧠 Kid Card: The Committee of Experts</h4>
+                <p>Imagine you have a very hard math problem. Instead of asking just one smart friend, you ask 5 different smart friends (your *models*). Three say "10," one says "9," and one says "11." [cite_start]You'd probably trust the most common answer, "10"[cite: 17]. [cite_start]This "committee" [cite: 11] is an **ensemble** and is usually more accurate than any single friend.</p>
+            </article>
+
+            <h3>2. Bagging (Bootstrap Aggregating)</h3>
+            [cite_start]<p><strong>Detailed Explanation:</strong><br>Bagging builds independent models in <strong>parallel</strong> [cite: 27] [cite_start]on random samples of the data[cite: 26]. [cite_start]It uses **random sampling with replacement** (bootstrapping)[cite: 29]. [cite_start]A neat side effect is that each sample contains about <strong>63%</strong> of the original data [cite: 33][cite_start], and the remaining <strong>~37%</strong> left out are called **"Out-of-Bag" (OOB)** samples[cite: 34]. [cite_start]This OOB data can be used as a free validation set[cite: 34, 59]. [cite_start]Bagging primarily helps to **reduce variance**[cite: 36].</p>
+
+            <article class="kid-card">
+                <h4>🧠 Kid Card: The Random Handfuls</h4>
+                <p>Imagine you have a big bag of 100 LEGOs. To build 5 different spaceships (models), you pull out a "handful" of 100 LEGOs *with replacement* (you put each one back after picking it). You do this 5 times, getting 5 slightly different handfuls. [cite_start]You build one ship from each handful[cite: 27]. This process is **Bagging**. [cite_start]The variety makes your final "fleet" of models stronger[cite: 36].</p>
+            </article>
+
+            <h3>3. Random Forest</h3>
+            [cite_start]<p><strong>Detailed Explanation:</strong><br>A Random Forest is an advanced version of bagging[cite: 37]. [cite_start]It adds one extra layer of randomness: In a Random Forest, when splitting a node, the tree only considers a *random subset* of features ($m$)[cite: 38], not all of them. [cite_start]For example, it might only be allowed to look at 5 random features out of 20 to make its decision[cite: 42]. This makes the trees even more different, improving the ensemble. [cite_start]Key hyperparameters are <code>n_estimators</code> (number of trees) [cite: 47] [cite_start]and <code>max_features</code> (features per split)[cite: 48].</p>
+            
+            <article class="kid-card">
+                <h4>🧠 Kid Card: The "Limited-Clues" Forest</h4>
+                <p>This is like Bagging, but *even more* random. [cite_start]You still build trees with a "random handful" of data[cite: 41]. [cite_start]But you add a new rule: at every "fork in the road" (a split), the tree is only allowed to look at a *random handful of clues* (features) to make its decision[cite: 38, 42]. This forces each tree to be creative, making the final "forest" even smarter.</p>
+            </article>
+
+            <h3>4. Boosting (Sequential Learning)</h3>
+            [cite_start]<p><strong>Detailed Explanation:</strong><br>Boosting builds models **sequentially** [cite: 69][cite_start], where each new model attempts to **correct the errors** made by the previous ones[cite: 70]. [cite_start]This is done via **weighted learning**: data points that were misclassified by the previous model are given *more weight* [cite: 76][cite_start], forcing the *next* model to pay extra attention to those "hard" points[cite: 77]. [cite_start]Boosting primarily helps to **reduce bias**[cite: 86].</p>
+            
+            <article class="kid-card">
+                <h4>🧠 Kid Card: The Relay Race Team</h4>
+                <p>Boosting is like building a relay team. <strong>Runner 1</strong> runs the race and gets 5 questions wrong. [cite_start]<strong>Runner 2</strong> is a "specialist" whose *only* job is to focus on those 5 mistakes[cite: 70, 77]. <strong>Runner 3</strong> is a specialist who focuses on the mistakes Runner 2 *still* made. Each new model just fixes the errors of the last one.</p>
+            </article>
+
+            <h3>5. AdaBoost (Adaptive Boosting)</h3>
+            [cite_start]<p><strong>Detailed Explanation:</strong><br>AdaBoost works by starting with equal weights[cite: 90]. [cite_start]It builds a weak learner (like a simple tree) [cite: 91, 97][cite_start], then **increases the weights** for all misclassified samples[cite: 93]. [cite_start]The next learner is then forced to focus on these "harder" samples[cite: 93]. [cite_start]This repeats, and the final prediction is a weighted vote of all learners[cite: 95].</p>
+            
+            <article class="kid-card">
+                <h4>🧠 Kid Card: The "Hard-Question" Spotlight</h4>
+                <p>AdaBoost is a boosting game with a "difficulty" spotlight. In Round 1, all questions are "1x" difficulty. [cite_start]If your model gets 3 wrong, AdaBoost shines a "10x" spotlight on those 3 hard questions[cite: 93]. The next model *must* pay attention to them because they're worth more points. It "adapts" the difficulty to focus on mistakes.</p>
+            </article>
+
+            <h3>6. Gradient Boosting (GBM)</h3>
+            <p><strong>Detailed Explanation:</strong><br>Gradient Boosting has a clever twist. [cite_start]Instead of changing sample weights, it fits the *next* weak learner directly to the **residuals** (the errors) of the *previous* learner[cite: 101]. [cite_start]The residuals (e.g., <code>actual - predicted</code>) **become the new target variable** for the next model[cite: 107]. [cite_start]Each new model is trained to *predict the error* of the previous model, and this continues until the errors are minimized[cite: 108].</p>
+            
+            <article class="kid-card">
+                <h4>🧠 Kid Card: The "Guess-the-Mistake" Game</h4>
+                <p><strong>Player 1</strong> tries to guess everyone's weight. He's off by +10 lbs for Ali and -5 lbs for Bo. [cite_start]<strong>Player 2's</strong> job is *not* to guess their weight, but to guess the *mistakes* "+10" and "-5"[cite: 107]. <strong>Player 3's</strong> job is to guess the mistakes Player 2 *still* made. Your final answer is Player 1's guess + Player 2's guess + Player 3's guess.</p>
+            </article>
+
+            <h3>7. XGBoost (Extreme Gradient Boosting)</h3>
+            [cite_start]<p><strong>Detailed Explanation:</strong><br>XGBoost is an upgraded, high-performance implementation of Gradient Boosting [cite: 125][cite_start], focused on **computational speed** and **performance**[cite: 127]. [cite_start]It has advanced features like **Parallelization** [cite: 129][cite_start], **Out-of-Core Computing** (for huge datasets) [cite: 131][cite_start], and **internal handling of Missing Values**[cite: 133, 134]. [cite_start]It also has great hyperparameters for preventing overfitting, like <code>gamma</code> [cite: 152] [cite_start]and <code>colsample_bytree</code>[cite: 157].</p>
+            
+            <article class="kid-card">
+                <h4>🧠 Kid Card: The Gradient Boosting Racecar</h4>
+                <p>If Gradient Boosting is a smart game, **XGBoost** is that same game in a *Formula 1 racecar*. [cite_start]It does the same "guess-the-mistake" job [cite: 124][cite_start], but it's built to be **extremely fast**[cite: 127]. [cite_start]It can use all your computer's power at once [cite: 129][cite_start], work with datasets too big for memory [cite: 131][cite_start], and it even knows what to do with missing data all by itself[cite: 133].</p>
+            </article>
+
+            <h3>8. Stacking</h3>
+            [cite_start]<p><strong>Detailed Explanation:</strong><br>Stacking combines **heterogeneous models** (models of different types, e.g., KNN, SVM)[cite: 161, 163]. [cite_start]Instead of a simple vote, it uses a **"meta-model"** to learn how to best combine the predictions[cite: 161]. [cite_start]The predictions from the base models are used as the **input features** for this final meta-model, which then makes the ultimate prediction[cite: 165].</p>
+            
+            <article class="kid-card">
+                <h4>🧠 Kid Card: The All-Star Team and the Manager</h4>
+                <p>Stacking is like building an All-Star team. [cite_start]<strong>Level 1 (The Players):</strong> You train different models (a Random Forest, an SVM, etc.)[cite: 163]. [cite_start]<strong>Level 2 (The Manager):</strong> You hire a final "meta-model"[cite: 161]. [cite_start]The players just give their *opinion* (prediction) to the Manager, and the Manager *learns* which player to trust and makes the final call[cite: 165].</p>
+            </article>
+        </section>
+
+        <section class="topic-section">
+            <h2>🧐 Model Evaluation & Validation</h2>
+
+            <h3>1. Cross-Validation</h3>
+            [cite_start]<p><strong>Detailed Explanation:</strong><br>Cross-validation is a technique to estimate how well your model will perform on new, unseen data[cite: 187]. [cite_start]In <strong>k-fold cross-validation</strong>, you divide the data into $k$ "folds" (e.g., 10)[cite: 191, 214]. You then run $k$ experiments. [cite_start]In each one, you train on $k-1$ folds and test on the 1 fold that was left out[cite: 192]. [cite_start]This is repeated so every fold gets to be the test set once[cite: 193]. [cite_start]The final model performance is the **average** of all $k$ scores[cite: 202], which is a very reliable estimate.</p>
+            
+            <article class="kid-card">
+                <h4>🧠 Kid Card: The 10-Page Pop Quiz</h4>
+                <p>You have a 10-page study guide. Instead of just studying pages 1-9 and testing on page 10, you do 10 tests. [cite_start]<strong>Test 1:</strong> Study 1-9, test on 10[cite: 192]. [cite_start]<strong>Test 2:</strong> Study 1-8 & 10, test on 9. You do this 10 times, so every page is the "test" once[cite: 193]. [cite_start]Your final grade is the **average of all 10 tests**[cite: 202]. This is a much more trustworthy score!</p>
+            </article>
+
+            <h3>2. Underfitting & Overfitting</h3>
+            <p><strong>Detailed Explanation:</strong></p>
+            <ul>
+                [cite_start]<li><strong>Underfitting:</strong> The model is too simple[cite: 220]. [cite_start]It performs poorly *even on the training set*[cite: 221]. [cite_start]Fix by **increasing model complexity**[cite: 230].</li>
+                [cite_start]<li><strong>Overfitting:</strong> The model learns the training data *too well*, including noise[cite: 238]. [cite_start]It performs great on train data but **terrible on test data**[cite: 240, 242]. [cite_start]Fix by using **regularization** [cite: 250][cite_start], getting **more data** [cite: 251][cite_start], or **decreasing complexity**[cite: 253].</li>
+            </ul>
+            
+            <article class="kid-card">
+                <h4>🧠 Kid Card: The Test Study Analogy</h4>
+                <p><strong>Underfitting (Too Simple):</strong> You *only* read the chapter titles for a test. You fail the practice questions *and* the real test. [cite_start]Your model was "too simple"[cite: 220].</p>
+                [cite_start]<p><strong>Overfitting (Too Specific):</strong> You *memorize* every practice question, including the typos[cite: 241]. You get 100% on the practice test. But when the *real test* asks the questions differently, you fail. [cite_start]You "memorized the noise" instead of learning the concept[cite: 238].</p>
+            </article>
+
+            <h3>3. Data Leakage</h3>
+            [cite_start]<p><strong>Detailed Explanation:</strong><br>Data leakage is a critical error where information from the *test set* accidentally "leaks" into the *training process*[cite: 255]. [cite_start]This gives you an artificially high test score because the model has "seen the answers"[cite: 256]. [cite_start]Common causes are standardizing or imputing missing values on the *entire dataset* before splitting[cite: 260, 261]. <strong>Prevention:</strong> ALWAYS split your data first. [cite_start]Keep your test set separate *before* doing any processing[cite: 270, 271].</p>
+            
+            <article class="kid-card">
+                <h4>🧠 Kid Card: Cheating on the Spelling Bee</h4>
+                <p>Data leakage is **cheating**! You have 100 "practice words" (train set) and 10 "secret test words" (test set). [cite_start]Leakage is when someone mixes the 10 secret words into your practice list[cite: 255]. [cite_start]You get 100% on the test, but you *look* like a genius without *actually* learning to spell[cite: 256].</p>
+            </article>
+        </section>
+
+        <section class="topic-section">
+            <h2>🛠️ Data Preprocessing & Tuning</h2>
+
+            <h3>1. Handling Imbalanced Data</h3>
+            [cite_start]<p><strong>Detailed Explanation:</strong><br>This is when one class (majority) vastly outnumbers another (minority)[cite: 275]. [cite_start]The model becomes biased[cite: 277]. Strategies include:</p>
+            <ul>
+                [cite_start]<li><strong>Oversampling:</strong> Increasing the minority class, often by duplicating records[cite: 279, 281].</li>
+                [cite_start]<li><strong>Undersampling:</strong> Decreasing the majority class, often by removing records[cite: 282, 284].</li>
+                [cite_start]<li><strong>SMOTE:</strong> A smart oversampling technique that creates *new, synthetic* minority data points by finding neighbors and adding a new point *between* them[cite: 289, 290, 291].</li>
+                [cite_start]<li><strong>Tomek links:</strong> An undersampling technique that finds pairs of very close points from *opposite* classes [cite: 299] [cite_start]and removes the *majority* point from the pair to create a cleaner border[cite: 300].</li>
+            </ul>
+            
+            <article class="kid-card">
+                <h4>🧠 Kid Card: The "Bad Guy" Detector</h4>
+                <p>You have 99 "Normal" photos and 1 "Bad Guy" photo. [cite_start]Your robot just learns to say "Normal"[cite: 277]. [cite_start]To fix this: <strong>Oversampling:</strong> You photocopy the "Bad Guy" 98 times[cite: 281]. [cite_start]<strong>SMOTE:</strong> You create *new*, slightly different "Bad Guy" photos[cite: 289]. [cite_start]<strong>Undersampling:</strong> You throw away 98 "Normal" photos[cite: 284].</p>
+            </article>
+
+            <h3>2. Hyperparameter Tuning</h3>
+            [cite_start]<p><strong>Detailed Explanation:</strong><br>Hyperparameters are the settings you choose *before* training begins (e.g., <code>learning_rate</code>, <code>n_estimators</code>)[cite: 305, 306]. [cite_start]**Hyperparameter Tuning** is the process of finding the optimal values for these settings to improve performance and reduce over/underfitting[cite: 308, 309].</p>
+            
+            <article class="kid-card">
+                <h4>🧠 Kid Card: The Oven Knobs</h4>
+                [cite_start]<p>If your model is an "oven" and data is "cookie dough," the **hyperparameters** are the *knobs on the outside* you must set *before* baking: `Temperature` and `Time`[cite: 306]. [cite_start]**Tuning** is the process of trying different combinations (e.g., "350° for 10 min") to find the single best recipe that makes the perfect cookie[cite: 308].</p>
+            </article>
+
+            <h3>3. Hyperparameter Tuning Methods</h3>
+            <p><strong>Detailed Explanation:</strong></p>
+            <ul>
+                [cite_start]<li><strong>GridSearchCV (Grid Search):</strong> Exhaustively tries **all possible combinations** you list in a "grid"[cite: 327, 328]. [cite_start]It's thorough but very slow and expensive[cite: 337].</li>
+                [cite_start]<li><strong>RandomizedSearchCV (Random Search):</strong> A faster method that **samples a fixed number of random combinations** from your parameter space[cite: 340, 343]. [cite_start]It's much more efficient for large search spaces and often finds a better result because it can explore more values for the *important* parameters[cite: 344, 350].</li>
+            </ul>
+            
+            <article class="kid-card">
+                <h4>🧠 Kid Card: Finding the Best Ice Cream</h4>
+                <p>You have 10 flavors and 10 toppings (100 combos). [cite_start]<strong>Grid Search:</strong> You must eat all 100 combinations[cite: 328]. [cite_start]It's slow, but you'll find the best one[cite: 337]. [cite_start]<strong>Random Search:</strong> You only have time to eat 10. You pick 10 random combinations[cite: 343]. [cite_start]You'll find a *really good* one, and it was 10 times faster[cite: 339].</p>
+            </article>
+        </section>
+
+    </main>
+</body>
+</html>
