@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Model Context Protocol (MCP) Notes</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            --card-bg: rgba(255, 255, 255, 0.2);
+            --card-border: 1px solid rgba(255, 255, 255, 0.3);
+            --text-color: #f0f0f0;
+            --header-color: #ffffff;
+            --strong-color: #d1d8ff;
+            --kid-card-bg: rgba(40, 40, 80, 0.3);
+            --kid-card-border: #9b86ee;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #667eea;
+            background-image: var(--bg-gradient);
+            color: var(--text-color);
+            padding: 2rem 1rem;
+            min-height: 100vh;
+            background-attachment: fixed;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        h1 {
+            text-align: center;
+            color: var(--header-color);
+            font-size: 3rem;
+            margin-bottom: 2rem;
+            text-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .topic-section {
+            background: var(--card-bg);
+            border-radius: 20px;
+            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.2);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: var(--card-border);
+            padding: 2rem;
+            margin-bottom: 2.5rem;
+        }
+
+        h2 {
+            font-size: 2rem;
+            color: var(--header-color);
+            border-bottom: 2px solid rgba(255, 255, 255, 0.3);
+            padding-bottom: 0.75rem;
+            margin-bottom: 1.5rem;
+        }
+
+        h3 {
+            font-size: 1.5rem;
+            color: var(--header-color);
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        p, ul, ol {
+            font-size: 1rem;
+            line-height: 1.7;
+            color: var(--text-color);
+            margin-bottom: 1rem;
+        }
+
+        ul, ol {
+            list-style-position: inside;
+            padding-left: 1rem;
+        }
+        
+        li {
+            margin-bottom: 0.5rem;
+        }
+
+        code {
+            background: rgba(0, 0, 0, 0.2);
+            border-radius: 5px;
+            padding: 0.2em 0.5em;
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 0.9rem;
+        }
+        
+        strong {
+            color: var(--strong-color);
+            font-weight: 600;
+        }
+
+        .kid-card {
+            background: var(--kid-card-bg);
+            border-left: 5px solid var(--kid-card-border);
+            padding: 1.5rem;
+            border-radius: 10px;
+            margin-top: 1.5rem;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .kid-card h4 {
+            font-size: 1.2rem;
+            color: #f7f7f7;
+            margin-bottom: 0.75rem;
+        }
+
+    </style>
+</head>
+<body>
+    <main class="container">
+        <h1>📚 My Notes on the Model Context Protocol (MCP)</h1>
+
+        <section class="topic-section">
+            <h2>🚀 What is the Model Context Protocol (MCP)?</h2>
+            
+            <h3>1. Core Concept</h3>
+            <p><strong>Detailed Explanation:</strong><br>The Model Context Protocol (MCP) is an open-source framework introduced by Anthropic in late 2024 and adopted by major AI labs like OpenAI and Google.</p>
+            <p>Think of it as a <strong>"universal language" or a "USB-C port for AI"</strong>. Its purpose is to standardize how AI agents (like ChatGPT) communicate and interact with external tools, data sources, and services (like your product, or Zomato).</p>
+            <p>Before MCP, you had to build a custom "plugin" for each AI. Now, a product can build <strong>one MCP-compliant "server,"</strong> and <strong>any MCP-compliant "client"</strong> (like ChatGPT or Claude) can talk to it. This is what enables "agentic AI" — programs that can autonomously *take actions* for a user.</p>
+            
+            <article class="kid-card">
+                <h4>🧠 Kid Card: The Universal Translator</h4>
+                <p>Imagine your AI (ChatGPT) is an "English-only" customer. Your product (Zomato) is a "Hindi-only" kitchen. They can't understand each other.</p>
+                <p><strong>MCP</strong> is like inventing a <strong>Universal Translator Device</strong>. Now, your kitchen (your product) just needs one device (the <strong>MCP Server</strong>). Any customer (any AI) with their *own* device (the <strong>MCP Client</strong>) can now place an order perfectly. It's the one standard that lets everyone talk.</p>
+            </article>
+
+            <h3>2. MCP vs. RAG</h3>
+            <p><strong>Detailed Explanation:</strong><br>
+                <ul>
+                    <li><strong>RAG (Retrieval-Augmented Generation):</strong> Is for <strong>information retrieval</strong>. It's a one-way street: "Go *get me* this information" (like from a PDF) so the AI can give a more truthful answer.</li>
+                    <li><strong>MCP:</strong> Is for <strong>standardized two-way communication</strong> to *perform actions*. It allows the AI to *interact* with a service (e.g., "Add this to my cart," "Book a table").</li>
+                </ul>
+            </p>
+            <article class="kid-card">
+                <h4>🧠 Kid Card: The Library vs. The Assistant</h4>
+                <p><strong>RAG</strong> is like a "Library Runner." You ask, "What's the news?" The runner *gets the newspaper* and gives it to you.</p>
+                <p><strong>MCP</strong> is like a "Personal Assistant." You say, "Book me a flight." The assistant *uses tools* (like a phone and credit card) and *performs an action* in the real world. MCP lets your AI be an *assistant*, not just a *runner*.</p>
+            </article>
+        </section>
+
+        <section class="topic-section">
+            <h2>🛠️ How to Move Existing Products on MCP (So AI Can Use It)</h2>
+            <p>"Moving a product" to MCP means creating an <strong>MCP Server</strong> for it. This server acts as the secure, standardized "front door" that AIs can knock on. Here's how:</p>
+
+            <h3>Step 1: Expose Your Product via an API</h3>
+            <p>Before anything else, your product *must* have an <strong>API (Application Programming Interface)</strong>. This is the set of private rules that lets programs request info (e.g., <code>GET /products/123</code>) or perform actions (e.g., <code>POST /orders</code>). This is the "kitchen" the AI will talk to.</p>
+
+            <h3>Step 2: Build Your MCP Server</h3>
+            <p>The <strong>MCP Server</strong> is the new software you build. It sits *between* the AI (MCP Client) and your existing API. Its job is to be the "Universal Translator":
+                <ol>
+                    <li>It receives a standard MCP request from the AI.</li>
+                    <li>It translates that request into a call to your *own* internal API.</li>
+                    <li>It gets the response from your API.</li>
+                    <li>It translates that response *back* into the standard MCP format and sends it to the AI.</li>
+                </ol>
+            </p>
+
+            <h3>Step 3: Define the Server's "Capabilities"</h3>
+            <p>Your MCP Server needs to tell the AI what actions it can perform (its "menu of services"). You define a <strong>schema</strong> (like an OpenAPI schema) that lists all available functions. For Zomato, this would be: <code>search_restaurants()</code>, <code>get_menu()</code>, <code>add_to_cart()</code>, etc..</p>
+
+            <h3>Step 4: Implement Security & Authentication (OAuth)</h3>
+            <p>This is critical. The MCP standard uses protocols like <strong>OAuth</strong>. Your MCP Server acts as an **OAuth Provider**. The first time a user in ChatGPT tries to use your tool, they will be redirected to *your* login page to grant permission. This ensures the AI can only access data the user has approved.</p>
+
+            <h3>Step 5: Register Your Server with the AI (The "Client" Side)</h3>
+            <p>Once your server is built and hosted at a URL (like <code>https://mcp.myproduct.com</code>), you need to tell the AI "hosts" (like ChatGPT or Claude) how to find it. This involves registering the server, for example, by adding its URL to a configuration file like <code>mcp.json</code>.</p>
+
+            <article class="kid-card">
+                <h4>🧠 Kid Card: Putting Your Kitchen on MCP</h4>
+                <p>You have a secret kitchen (your <strong>product</strong>). You want to let a famous "Food Critic" (the **AI**) order from it.</p>
+                <ol>
+                    <li><strong>Install a Phone (The API):</strong> You put a phone in your kitchen so people *can* call in.</li>
+                    <li><strong>Hire a Receptionist (The MCP Server):</strong> You hire a receptionist who speaks the "Universal Language" (MCP) and sits at a public desk (a URL).</li>
+                    <li><strong>Write a Menu (The Capabilities):</strong> You give the receptionist a menu of *only* the things they can do (e.g., <code>order_pizza</code>).</li>
+                    <li><strong>Get a Bouncer (The OAuth):</strong> You put a bouncer at the desk. When the "Food Critic" (AI) arrives, the bouncer checks their ID and gets their permission (the user logs in).</li>
+                    <li><strong>Get in the Phonebook (The Registration):</strong> You tell the "Food Critic's" boss (the AI Platform) your receptionist's phone number so they know how to call you.</li>
+                </ol>
+            </article>
+        </section>
+
+        <section class="topic-section">
+            <h2>🌯 Example: How Zomato Uses MCP with ChatGPT</h2>
+            <p>This is the real-world example of the steps above.</p>
+            <ol>
+                <li><strong>The User asks:</strong> "Find me a good biryani place near me and book a table for two."</li>
+                <li><strong>ChatGPT (MCP Host):</strong> Understands the *intent*. It sees it has a "tool" (the Zomato MCP Server) that can `search_restaurants`.</li>
+                <li><strong>Authentication:</strong> If it's the first time, ChatGPT asks the user: "I can do this with Zomato. Please log in to give me permission." The user logs into Zomato via OAuth.</li>
+                <li><strong>The AI Takes Action:</strong> ChatGPT's MCP Client sends a standardized request to Zomato's server: <code>httpsU://mcp-server.zomato.com/mcp</code>. The request looks like: <code>{ "action": "search_restaurants", "params": { "query": "biryani" } }</code>.</li>
+                <li><strong>The Zomato MCP Server:</strong> Receives this request, calls its *own internal Zomato APIs* to find the restaurants, and formats the list into the standard MCP response.</li>
+                <li><strong>The Conversation Continues:</strong> ChatGPT gets the list and tells the user: "I found 3 places! 'Biryani Paradise' has a 4.5-star rating. Here is the menu...".</li>
+                <li><strong>The User says:</strong> "Great, book a table for 8 PM."</li>
+                <li><strong>The AI Takes Action Again:</strong> ChatGPT sends a *new* MCP request (e.g., <code>"action": "book_table"</code>). The Zomato server receives this, makes the booking, and sends back a confirmation.</li>
+            </ol>
+        </section>
+
+    </main>
+</body>
+</html>
